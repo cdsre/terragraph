@@ -22,6 +22,40 @@ A package to help vizualise output from terraform graph as an svg file
 * Free software: MIT license
 * Documentation: https://terragraph.readthedocs.io.
 
+Overview
+--------
+
+The idea behind this is to choose a node on a terraform dependency graph and be able to highlight all the preceding or
+successor edges or both, recursively.
+
+Terraform is pretty good at calculating dependencies however sometimes there are casues where terraform cannot know. or
+where users don't realise how terraform generates dependencies. This can lead to race conditions where running the first
+time fails but running the second time works. A prime example of this is when we pass an output of module A as an input
+of module B. In most cases users assume that outputs of module A will not be available until all resources in the module
+have finished. However, this is not the case. Terraform will start running module B as soon as the output in module A is
+available even when other resources in module A are not finished but module B expects them to be.
+
+Generating a terraform graph is easy. However, these graphs can get very large very quickly. So trying to follow and
+understand the dependencies of one resource in relation to other resources can get complicated. This project attempts to
+solve that by taking the output from a `terraform graph` command and selecting a specific node to highlight dependenices.
+it provides a HighlightingMode to allow the user to decide if they want to see all the resources the node depends on, all
+the resources that depend on this node, or both.
+
+Usage
+-----
+
+Currently, this is pretty raw, it just runs at the command line taking the DOT format file and the node name to highlight
+
+
+.. code-block:: sh
+    :caption: Example
+    terragraph --file-name docs/assets/graph.dot --node-name '"[root] module.mod1.random_pet.this (expand)"'                       23:19:25 
+    Colored node SVG file generated: docs/assets/graph.dot.svg
+
+The above will create an SVG file with the preceding edges highlighted.
+
+.. image:: sample-data/graph.dot.svg
+:alt: graph_output
 
 Features
 --------
