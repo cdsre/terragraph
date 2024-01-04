@@ -12,7 +12,7 @@
 <!-- [root] module.mod1.random_pet.this (expand) -->
 <g id="node1" class="node">
 <title>[root] module.mod1.random_pet.this (expand)</title>
-<polygon fill="none" stroke="red" points="528.58,-180 340.58,-180 340.58,-144 528.58,-144 528.58,-180"/>
+<polygon fill="none" stroke="black" points="528.58,-180 340.58,-180 340.58,-144 528.58,-144 528.58,-180"/>
 <text text-anchor="middle" x="434.58" y="-158.3" font-family="Times New Roman,serif" font-size="14.00">module.mod1.random_pet.this</text>
 </g>
 <!-- [root] provider[&quot;registry.terraform.io/hashicorp/random&quot;] -->
@@ -96,7 +96,7 @@
 <!-- [root] module.mod2.random_pet.this (expand) -->
 <g id="node4" class="node">
 <title>[root] module.mod2.random_pet.this (expand)</title>
-<polygon fill="none" stroke="black" points="948.58,-396 760.58,-396 760.58,-360 948.58,-360 948.58,-396"/>
+<polygon fill="none" stroke="red" points="948.58,-396 760.58,-396 760.58,-360 948.58,-360 948.58,-396"/>
 <text text-anchor="middle" x="854.58" y="-374.3" font-family="Times New Roman,serif" font-size="14.00">module.mod2.random_pet.this</text>
 </g>
 <!-- [root] module.mod2.var.pet_length (expand) -->
@@ -108,8 +108,8 @@
 <!-- [root] module.mod2.random_pet.this (expand)&#45;&gt;[root] module.mod2.var.pet_length (expand) -->
 <g id="edge16" class="edge">
 <title>[root] module.mod2.random_pet.this (expand)&#45;&gt;[root] module.mod2.var.pet_length (expand)</title>
-<path fill="none" stroke="black" d="M854.58,-359.7C854.58,-351.98 854.58,-342.71 854.58,-334.11"/>
-<polygon fill="black" stroke="black" points="858.08,-334.1 854.58,-324.1 851.08,-334.1 858.08,-334.1"/>
+<path fill="none" stroke="red" d="M854.58,-359.7C854.58,-351.98 854.58,-342.71 854.58,-334.11"/>
+<polygon fill="red" stroke="red" points="858.08,-334.1 854.58,-324.1 851.08,-334.1 858.08,-334.1"/>
 </g>
 <!-- [root] var.pet_length -->
 <g id="node7" class="node">
@@ -158,8 +158,8 @@
 <!-- [root] module.mod1.output.pet (expand)&#45;&gt;[root] module.mod1.random_pet.this (expand) -->
 <g id="edge4" class="edge">
 <title>[root] module.mod1.output.pet (expand)&#45;&gt;[root] module.mod1.random_pet.this (expand)</title>
-<path fill="none" stroke="black" d="M519,-216.23C504.39,-207.02 486.06,-195.47 470.23,-185.48"/>
-<polygon fill="black" stroke="black" points="472.05,-182.49 461.73,-180.12 468.32,-188.41 472.05,-182.49"/>
+<path fill="none" stroke="red" d="M519,-216.23C504.39,-207.02 486.06,-195.47 470.23,-185.48"/>
+<polygon fill="red" stroke="red" points="472.05,-182.49 461.73,-180.12 468.32,-188.41 472.05,-182.49"/>
 </g>
 <!-- [root] module.mod1.output.pet_length (expand)&#45;&gt;[root] module.mod1.random_pet.this (expand) -->
 <g id="edge5" class="edge">
@@ -194,8 +194,8 @@
 <!-- [root] module.mod2.var.pet_length (expand)&#45;&gt;[root] module.mod1.output.pet (expand) -->
 <g id="edge17" class="edge">
 <title>[root] module.mod2.var.pet_length (expand)&#45;&gt;[root] module.mod1.output.pet (expand)</title>
-<path fill="none" stroke="black" d="M786.01,-289.46C737.75,-278.53 673.1,-263.89 622.99,-252.54"/>
-<polygon fill="black" stroke="black" points="623.7,-249.11 613.17,-250.31 622.15,-255.93 623.7,-249.11"/>
+<path fill="none" stroke="red" d="M786.01,-289.46C737.75,-278.53 673.1,-263.89 622.99,-252.54"/>
+<polygon fill="red" stroke="red" points="623.7,-249.11 613.17,-250.31 622.15,-255.93 623.7,-249.11"/>
 </g>
 <!-- [root] module.mod2 (expand) -->
 <g id="node15" class="node">
@@ -206,8 +206,8 @@
 <!-- [root] module.mod2.var.pet_length (expand)&#45;&gt;[root] module.mod2 (expand) -->
 <g id="edge18" class="edge">
 <title>[root] module.mod2.var.pet_length (expand)&#45;&gt;[root] module.mod2 (expand)</title>
-<path fill="none" stroke="black" d="M901.24,-288.59C930.58,-278.27 968.55,-264.91 999.24,-254.12"/>
-<polygon fill="black" stroke="black" points="1000.66,-257.33 1008.93,-250.71 998.33,-250.72 1000.66,-257.33"/>
+<path fill="none" stroke="red" d="M901.24,-288.59C930.58,-278.27 968.55,-264.91 999.24,-254.12"/>
+<polygon fill="red" stroke="red" points="1000.66,-257.33 1008.93,-250.71 998.33,-250.72 1000.66,-257.33"/>
 </g>
 <!-- [root] provider[&quot;registry.terraform.io/hashicorp/random&quot;] (close) -->
 <g id="node16" class="node">

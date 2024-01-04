@@ -49,7 +49,9 @@ Currently, this is pretty raw, it just runs at the command line taking the DOT f
 
 .. code-block:: sh
 
-   terragraph --file-name docs/assets/graph.dot --node-name '"[root] module.mod1.random_pet.this (expand)"'
+    terragraph.exe --file-name docs/assets/graph.dot --node-name '"[root] module.mod2.random_pet.this (expand)"'
+    Colored node SVG file generated: docs/assets/graph.dot.svg
+
 
 
 The above will create an SVG file with the preceding edges highlighted.
