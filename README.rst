@@ -48,14 +48,17 @@ Currently, this is pretty raw, it just runs at the command line taking the DOT f
 
 
 .. code-block:: sh
-    :caption: Example
-    terragraph --file-name docs/assets/graph.dot --node-name '"[root] module.mod1.random_pet.this (expand)"'                       23:19:25 
+
+    terragraph --file-name docs/assets/graph.dot --node-name '"[root] module.mod2.random_pet.this (expand)"'
     Colored node SVG file generated: docs/assets/graph.dot.svg
+
+
 
 The above will create an SVG file with the preceding edges highlighted.
 
-.. image:: sample-data/graph.dot.svg
-:alt: graph_output
+.. image:: /docs/assets/graph.dot.svg
+   :alt: graph_output
+
 
 Features
 --------
