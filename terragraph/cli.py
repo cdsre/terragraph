@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """Console script for terragraph."""
 import sys
 import click
