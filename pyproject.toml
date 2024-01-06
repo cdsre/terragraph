@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=61.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "terragraph"
+version = "0.3.0"
+authors = [{name = "Chris Doyle", email = "uk.chris.doyle+cdsre@gmail.com"}]
+license = {text = "MIT license"}
+description = "A package to help vizualise output from terraform graph as an svg file"
+keywords = ["terragraph"]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+]
+urls = {Homepage = "https://github.com/cdsre/terragraph"}
+readme = "README.rst"
+requires-python = ">=3.6"
+dependencies = [
+    "Click>=7.0",
+    "pydot>=2.0.0"
+]
+
+[project.scripts]
+terragraph = "terragraph.cli:main"
+
+[project.optional-dependencies]
+dev = ["pytest>=3"]
+
+[tool.setuptools]
+zip-safe = false
+include-package-data = true
+
+[tool.setuptools.packages.find]
+include = ["terragraph"] # terragraph.*
+namespaces = false
+where = ["src"]
