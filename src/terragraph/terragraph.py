@@ -1,6 +1,5 @@
 """Main module."""
 import pydot
-import inquirer
 from enum import Enum
 
 
@@ -88,16 +87,3 @@ def get_nodes_list(dot_file_name: str) -> list[str]:
     graph = get_graph_from_file(dot_file_name)
     subgraph = graph.get_subgraph('"root"')[0]
     return [node.get_name() for node in subgraph.get_nodes()]
-
-
-if __name__ == "__main__":
-    dot_file = input("Enter the path to the dot file: ")
-    questions = [
-        inquirer.List('node_name', message="Select a node:", choices=get_nodes_list(dot_file), ),
-        inquirer.List('mode', message="Select a mode:", choices=[e.value for e in HighlightingMode], ),
-    ]
-
-    answers = inquirer.prompt(questions)
-    node_name = answers['node_name']
-    mode = HighlightingMode(answers["mode"])
-    create_highlighted_svg(dot_file, node_name, mode=mode)

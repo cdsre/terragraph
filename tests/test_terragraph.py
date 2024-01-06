@@ -6,8 +6,7 @@ import pytest
 
 from click.testing import CliRunner
 
-from terragraph import terragraph
-from terragraph import cli
+from src.terragraph import cli
 
 
 @pytest.fixture

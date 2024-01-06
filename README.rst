@@ -44,7 +44,19 @@ the resources that depend on this node, or both.
 Usage
 -----
 
-Currently, this is pretty raw, it just runs at the command line taking the DOT format file and the node name to highlight
+Currently, this is pretty raw, it just runs at the command line taking the DOT format file and the node name to highlight.
+By default it will highlight all **PRECEDING** edges. These are the things that must be completed before this node can
+start. It also supports passing the mode as a flag. The modes are
+
+.. table:: mode flags
+
+    ========= ===========
+    Value     Description
+    ========= ===========
+    PRECEDING Highlights all preceding edges to this node. This is all things that needs to complete before this node start
+    SUCCESSOR Highlights all successor edges from this node. This is all things that cannot start until this node is completed
+    ALL       This applies both PRECEDING and SUCCESSOR modes to highlight the full up and down dependency tree for the node
+    ========= ===========
 
 
 .. code-block:: sh

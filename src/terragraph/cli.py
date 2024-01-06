@@ -1,8 +1,9 @@
+#!/usr/bin/env python
 """Console script for terragraph."""
 import sys
 import click
 
-from terragraph.terragraph import HighlightingMode, create_highlighted_svg
+from .terragraph import HighlightingMode, create_highlighted_svg
 
 
 @click.command()
