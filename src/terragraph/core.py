@@ -2,7 +2,7 @@
 The core of the terragraph module
 """
 from enum import Enum
-import pydot
+import pydot  # type: ignore
 
 
 class HighlightingMode(Enum):
@@ -27,8 +27,8 @@ class Terragraph:
     def __init__(
         self,
         dot_data: str,
-        subgraph_name='"root"',
-        highlighting_mode=DEFAULT_HIGHLIGHTING_MODE,
+        subgraph_name: str = '"root"',
+        highlighting_mode: HighlightingMode = DEFAULT_HIGHLIGHTING_MODE,
     ):
         self.__graph = pydot.graph_from_dot_data(dot_data)[0]
         self.tf_graph = self.__graph.get_subgraph(subgraph_name)[0]
@@ -60,7 +60,7 @@ class Terragraph:
             return successor_edges + self.__get_successor_edges(successor_edges)
         return []
 
-    def highlight_node(self, node_name: str, color="red") -> None:
+    def highlight_node(self, node_name: str, color: str = "red") -> None:
         """
         Highlights a node and its given edges
         :param node_name: The name of the node to highlight from
@@ -72,7 +72,7 @@ class Terragraph:
         self.highlight_node_edges(node_name)
 
     @staticmethod
-    def highlight_edges(edges: list[pydot.Edge], color="red") -> None:
+    def highlight_edges(edges: list[pydot.Edge], color: str = "red") -> None:
         """
         highlights a list of edges with the color name
         :param edges: A list of edge objects to be highlighted
@@ -130,7 +130,7 @@ class Terragraph:
 def create_highlighted_svg(
     dot_file_name: str,
     highlighted_node_name: str,
-    mode=Terragraph.DEFAULT_HIGHLIGHTING_MODE,
+    mode: HighlightingMode = Terragraph.DEFAULT_HIGHLIGHTING_MODE,
 ) -> None:
     """
     Will create a highlighted representation of the graph under the same path as the dot_file_name but suffixed with .svg
@@ -150,7 +150,7 @@ def create_highlighted_svg(
     print(f"Colored node SVG file generated: {output_file_path}")
 
 
-def from_file(filename: str, mode=Terragraph.DEFAULT_HIGHLIGHTING_MODE) -> Terragraph:
+def from_file(filename: str, mode: HighlightingMode = Terragraph.DEFAULT_HIGHLIGHTING_MODE) -> Terragraph:
     "Takes a file name containing a 'terraform graph' output and returns a Terragraph object of it"
     with open(filename, encoding="utf-8") as dot_file:
         dot_input = dot_file.read()

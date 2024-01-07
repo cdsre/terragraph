@@ -35,7 +35,9 @@ dev = [
     "pytest>=3",
     "pylint",
     "black",
-    "mypy"
+    "mypy",
+    "sphinx",
+    "sphinx-rtd-theme",
 ]
 
 [tool.setuptools]
