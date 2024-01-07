@@ -28,10 +28,15 @@ dependencies = [
 ]
 
 [project.scripts]
-terragraph = "terragraph.cli:main"
+terragraph = "terragraph.cli:terragraph"
 
 [project.optional-dependencies]
-dev = ["pytest>=3"]
+dev = [
+    "pytest>=3",
+    "pylint",
+    "black",
+    "mypy"
+]
 
 [tool.setuptools]
 zip-safe = false
@@ -41,3 +46,6 @@ include-package-data = true
 include = ["terragraph"] # terragraph.*
 namespaces = false
 where = ["src"]
+
+[tool.pylint.message_control]
+max-line-length = 150
