@@ -68,19 +68,5 @@ start. It also supports passing the mode as a flag. The modes are
 
 The above will create an SVG file with the preceding edges highlighted.
 
-.. image:: /docs/assets/graph.dot.svg
+.. image:: docs/assets/graph.dot.svg
    :alt: graph_output
-
-
-Features
---------
-
-* TODO
-
-Credits
--------
-
-This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
-
-.. _Cookiecutter: https://github.com/audreyr/cookiecutter
-.. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage

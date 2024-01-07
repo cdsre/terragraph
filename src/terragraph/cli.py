@@ -1,22 +1,45 @@
-#!/usr/bin/env python
 """Console script for terragraph."""
-import sys
 import click
 
-from .terragraph import HighlightingMode, create_highlighted_svg
+from terragraph.core import HighlightingMode, create_highlighted_svg, from_file
 
 
-@click.command()
-@click.option('--file-name', type=click.Path(exists=True, dir_okay=False))
-@click.option('--node-name', required=True, help="Name of the node to highlight")
-@click.option('--mode', type=click.Choice([e.value for e in HighlightingMode]),
-              default=HighlightingMode.PRECEDING.value, help='Select highlighting mode')
-def main(file_name: str, node_name: str, mode: HighlightingMode):
+@click.group()
+def terragraph_cli() -> None:
     """Console script for terragraph."""
+
+
+@terragraph_cli.command()
+@click.option(
+    "--file-name", required=True, type=click.Path(exists=True, dir_okay=False)
+)
+@click.option("--node-name", required=True, help="Name of the node to highlight")
+@click.option(
+    "--mode",
+    type=click.Choice([e.value for e in HighlightingMode]),
+    default=HighlightingMode.PRECEDING.value,
+    help="Select highlighting mode",
+)
+def highlight(file_name: str, node_name: str, mode: HighlightingMode) -> int:
+    """
+    Highlights a node and its edges
+    """
     if file_name:
         create_highlighted_svg(file_name, node_name, mode=HighlightingMode(mode))
     return 0
 
 
-if __name__ == "__main__":
-    sys.exit(main())  # pragma: no cover
+@terragraph_cli.command()
+@click.option(
+    "--file-name", required=True, type=click.Path(exists=True, dir_okay=False)
+)
+def show_nodes(file_name: str) -> int:
+    """
+    Lists nodes in the terraform graph
+    """
+    print(f"file is: {file_name}")
+    tfg = from_file(file_name)
+    for node in tfg.get_node_names():
+        print(node)
+
+    return 0

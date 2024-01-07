@@ -8,10 +8,14 @@ Welcome to terragraph's documentation!
    readme
    installation
    usage
-   modules
    contributing
    authors
    history
+
+.. toctree::
+   :caption: Source:
+
+   source
 
 Indices and tables
 ==================
