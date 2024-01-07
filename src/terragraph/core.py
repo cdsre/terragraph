@@ -9,6 +9,7 @@ class HighlightingMode(Enum):
     """
     An Enum for managing the highlighting modes for edges
     """
+
     ALL = "all"
     PRECEDING = "preceding"
     SUCCESSOR = "successor"
@@ -20,19 +21,29 @@ class Terragraph:
     It can highlight preceeding edges, or succesor edges. It can also highlight both allowing the full dependency tree
     top and bottom for a given node.
     """
+
     DEFAULT_HIGHLIGHTING_MODE = HighlightingMode.PRECEDING
 
-    def __init__(self, dot_data: str, subgraph_name='"root"', highlighting_mode=DEFAULT_HIGHLIGHTING_MODE):
+    def __init__(
+        self,
+        dot_data: str,
+        subgraph_name='"root"',
+        highlighting_mode=DEFAULT_HIGHLIGHTING_MODE,
+    ):
         self.__graph = pydot.graph_from_dot_data(dot_data)[0]
         self.tf_graph = self.__graph.get_subgraph(subgraph_name)[0]
         self.highlight_mode = highlighting_mode
 
     def __get_preceding_edges(self, edges: list[pydot.Edge]) -> list[pydot.Edge]:
-        destination_edge_names: list[pydot.Edge] = [edge.get_destination() for edge in edges]
+        destination_edge_names: list[pydot.Edge] = [
+            edge.get_destination() for edge in edges
+        ]
 
         if destination_edge_names:
             destination_edges: list[pydot.Edge] = [
-                edge for edge in self.tf_graph.get_edges() if edge.get_source() in destination_edge_names
+                edge
+                for edge in self.tf_graph.get_edges()
+                if edge.get_source() in destination_edge_names
             ]
             return destination_edges + self.__get_preceding_edges(destination_edges)
         return []
@@ -41,8 +52,11 @@ class Terragraph:
         successor_edge_names: list[pydot.Edge] = [edge.get_source() for edge in edges]
 
         if successor_edge_names:
-            successor_edges: list[pydot.Edge] = [edge for edge in self.tf_graph.get_edges() if
-                                                 edge.get_destination() in successor_edge_names]
+            successor_edges: list[pydot.Edge] = [
+                edge
+                for edge in self.tf_graph.get_edges()
+                if edge.get_destination() in successor_edge_names
+            ]
             return successor_edges + self.__get_successor_edges(successor_edges)
         return []
 
@@ -69,12 +83,18 @@ class Terragraph:
             edge.set_color(color)
 
     def __get_all_preceding_edges(self, node_name: str) -> list[pydot.Edge]:
-        node_preceding_edges = [edge for edge in self.tf_graph.get_edges() if edge.get_source() == node_name]
+        node_preceding_edges = [
+            edge for edge in self.tf_graph.get_edges() if edge.get_source() == node_name
+        ]
         preceding_edges = self.__get_preceding_edges(node_preceding_edges)
         return node_preceding_edges + preceding_edges
 
     def __get_all_successor_edges(self, node_name: str) -> list[pydot.Edge]:
-        node_successor_edges = [edge for edge in self.tf_graph.get_edges() if edge.get_destination() == node_name]
+        node_successor_edges = [
+            edge
+            for edge in self.tf_graph.get_edges()
+            if edge.get_destination() == node_name
+        ]
         successor_edges = self.__get_successor_edges(node_successor_edges)
         return node_successor_edges + successor_edges
 
@@ -107,8 +127,11 @@ class Terragraph:
         self.__graph.write(file_name, format="svg")
 
 
-def create_highlighted_svg(dot_file_name: str, highlighted_node_name: str,
-                           mode=Terragraph.DEFAULT_HIGHLIGHTING_MODE) -> None:
+def create_highlighted_svg(
+    dot_file_name: str,
+    highlighted_node_name: str,
+    mode=Terragraph.DEFAULT_HIGHLIGHTING_MODE,
+) -> None:
     """
     Will create a highlighted representation of the graph under the same path as the dot_file_name but suffixed with .svg
 

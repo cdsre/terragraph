@@ -28,7 +28,7 @@ dependencies = [
 ]
 
 [project.scripts]
-terragraph = "terragraph.cli:terragraph"
+terragraph = "terragraph.cli:terragraph_cli"
 
 [project.optional-dependencies]
 dev = [
