@@ -2,7 +2,6 @@
 Usage
 =====
 
-To use terragraph in a project::
-
-    import terragraph
-
+.. click:: terragraph.cli:terragraph_cli
+   :prog: terragraph
+   :nested: full
