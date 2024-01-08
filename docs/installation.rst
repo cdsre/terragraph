@@ -8,6 +8,13 @@ Installation
 Stable release
 --------------
 
+.. warning::
+
+   You need to have graphviz installed for terragraph to work. You can install it
+   from here https://graphviz.org/download/. Its not possible for terragraph to
+   pull this in automatically.
+
+
 To install terragraph, run this command in your terminal:
 
 .. code-block:: console
