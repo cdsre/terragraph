@@ -5,7 +5,7 @@ from terragraph.core import HighlightingMode, create_highlighted_svg, from_file
 
 
 @click.group()
-def terragraph_cli() -> None:
+def terragraph_cli() -> click.BaseCommand:
     """Console script for terragraph."""
 
 
@@ -24,8 +24,7 @@ def highlight(file_name: str, node_name: str, mode: HighlightingMode) -> int:
     """
     Highlights a node and its edges
     """
-    if file_name:
-        create_highlighted_svg(file_name, node_name, mode=HighlightingMode(mode))
+    create_highlighted_svg(file_name, node_name, mode=HighlightingMode(mode))
     return 0
 
 

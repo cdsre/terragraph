@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "terragraph"
-version = "0.3.2"
+version = "0.3.3"
 authors = [{name = "Chris Doyle", email = "uk.chris.doyle+cdsre@gmail.com"}]
 license = {text = "MIT license"}
 description = "A package to help vizualise output from terraform graph as an svg file"
@@ -38,6 +38,7 @@ dev = [
     "mypy",
     "sphinx",
     "sphinx-rtd-theme",
+    "pylint-pytest",
 ]
 
 [tool.setuptools]
@@ -51,3 +52,6 @@ where = ["src"]
 
 [tool.pylint.message_control]
 max-line-length = 150
+
+[tool.pylint.master]
+load-plugins = "pylint_pytest"
