@@ -3,6 +3,7 @@ Test cases for the CLI
 """
 import pytest
 from click.testing import CliRunner
+
 from terragraph.cli import terragraph_cli
 
 
@@ -62,7 +63,7 @@ digraph {
 		"[root] root" -> "[root] provider[\"registry.terraform.io/hashicorp/time\"] (close)"
 	}
 }
-"""
+""",
         )
         f.flush()
         yield test_file
@@ -77,7 +78,13 @@ def test_highlight_command(runner, runner_temp_file):
     output_file_path = f"{input_file_path}.svg"
     result = runner.invoke(
         terragraph_cli,
-        ["highlight", "--file-name", input_file_path, "--node-name", '"[root] module.mod1.random_pet.this2 (expand)"']
+        [
+            "highlight",
+            "--file-name",
+            input_file_path,
+            "--node-name",
+            '"[root] module.mod1.random_pet.this2 (expand)"',
+        ],
     )
 
     assert result.exit_code == 0
@@ -91,7 +98,7 @@ def test_show_nodes_command(runner, runner_temp_file):
     input_file_path = runner_temp_file.absolute()
     result = runner.invoke(
         terragraph_cli,
-        ["show-nodes", "--file-name", input_file_path]
+        ["show-nodes", "--file-name", input_file_path],
     )
 
     expected_nodes = r"""
@@ -114,7 +121,15 @@ def test_invalid_highlight_mode(runner, runner_temp_file):
     """
     result = runner.invoke(
         terragraph_cli,
-        ["highlight", "--file-name", runner_temp_file.absolute(), "--node-name", "test-node", "--mode", "invalid_mode"]
+        [
+            "highlight",
+            "--file-name",
+            runner_temp_file.absolute(),
+            "--node-name",
+            "test-node",
+            "--mode",
+            "invalid_mode",
+        ],
     )
 
     assert result.exit_code != 0

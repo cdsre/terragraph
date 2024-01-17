@@ -56,3 +56,6 @@ max-line-length = 150
 
 [tool.pylint.master]
 load-plugins = "pylint_pytest"
+
+[tool.isort]
+profile = "black"

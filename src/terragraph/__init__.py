@@ -4,4 +4,4 @@ __author__ = "Chris Doyle"
 __email__ = "uk.chris.doyle+cdsre@gmail.com"
 __version__ = "0.3.3"
 
-from .core import Terragraph, from_file, create_highlighted_svg, HighlightingMode
+from .core import HighlightingMode, Terragraph, create_highlighted_svg, from_file

@@ -11,7 +11,9 @@ def terragraph_cli() -> click.BaseCommand:
 
 @terragraph_cli.command()
 @click.option(
-    "--file-name", required=True, type=click.Path(exists=True, dir_okay=False)
+    "--file-name",
+    required=True,
+    type=click.Path(exists=True, dir_okay=False),
 )
 @click.option("--node-name", required=True, help="Name of the node to highlight")
 @click.option(
@@ -30,7 +32,9 @@ def highlight(file_name: str, node_name: str, mode: HighlightingMode) -> int:
 
 @terragraph_cli.command()
 @click.option(
-    "--file-name", required=True, type=click.Path(exists=True, dir_okay=False)
+    "--file-name",
+    required=True,
+    type=click.Path(exists=True, dir_okay=False),
 )
 def show_nodes(file_name: str) -> int:
     """

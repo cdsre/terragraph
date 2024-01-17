@@ -2,6 +2,7 @@
 The core of the terragraph module
 """
 from enum import Enum
+
 import pydot  # type: ignore
 
 
@@ -150,7 +151,10 @@ def create_highlighted_svg(
     print(f"Colored node SVG file generated: {output_file_path}")
 
 
-def from_file(filename: str, mode: HighlightingMode = Terragraph.DEFAULT_HIGHLIGHTING_MODE) -> Terragraph:
+def from_file(
+    filename: str,
+    mode: HighlightingMode = Terragraph.DEFAULT_HIGHLIGHTING_MODE,
+) -> Terragraph:
     "Takes a file name containing a 'terraform graph' output and returns a Terragraph object of it"
     with open(filename, encoding="utf-8") as dot_file:
         dot_input = dot_file.read()

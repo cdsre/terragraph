@@ -34,4 +34,3 @@ digraph {
 		"[root] root" -> "[root] provider[\"registry.terraform.io/hashicorp/time\"] (close)"
 	}
 }
-
