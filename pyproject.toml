@@ -21,7 +21,7 @@ classifiers = [
 ]
 urls = {Homepage = "https://github.com/cdsre/terragraph"}
 readme = "README.rst"
-requires-python = ">=3.6"
+requires-python = ">=3.9"
 dependencies = [
     "Click>=7.0",
     "pydot>=2.0.0"
@@ -40,6 +40,7 @@ dev = [
     "sphinx-rtd-theme",
     "sphinx-click",
     "pylint-pytest",
+    "tox",
 ]
 
 [tool.setuptools]
@@ -59,3 +60,7 @@ load-plugins = "pylint_pytest"
 
 [tool.isort]
 profile = "black"
+
+[tool.tox]
+skip_missing_interpreters = true
+allowlist_externals = "*"
