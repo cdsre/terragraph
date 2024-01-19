@@ -21,7 +21,7 @@ classifiers = [
 ]
 urls = {Homepage = "https://github.com/cdsre/terragraph"}
 readme = "README.rst"
-requires-python = ">=3.6"
+requires-python = ">=3.9"
 dependencies = [
     "Click>=7.0",
     "pydot>=2.0.0"
