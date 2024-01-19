@@ -33,14 +33,14 @@ terragraph = "terragraph.cli:terragraph_cli"
 [project.optional-dependencies]
 dev = [
     "pytest>=3",
-    "pylint==3.0.3",
-    "black==23.12.1",
-    "mypy==1.8.0",
-    "sphinx==7.2.6",
-    "sphinx-rtd-theme==2.0.0",
-    "sphinx-click==5.1.0",
-    "pylint-pytest==1.1.7",
-    "tox==4.12.1",
+    "pylint",
+    "black",
+    "mypy",
+    "sphinx",
+    "sphinx-rtd-theme",
+    "sphinx-click",
+    "pylint-pytest",
+    "tox",
 ]
 
 [tool.setuptools]
