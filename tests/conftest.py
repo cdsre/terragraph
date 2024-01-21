@@ -1,8 +1,17 @@
+"""
+The general fixutres for pytest
+"""
 import pytest
+
+from terragraph.core import Terragraph
 
 
 @pytest.fixture()
 def graph_string() -> str:
+    """
+    Creates an example digraph based on a terraform output
+    :return:
+    """
     return r"""
 digraph {
 	compound = "true"
@@ -43,6 +52,16 @@ digraph {
 	}
 }
 """
+
+
+@pytest.fixture()
+def terragraph_example(graph_string) -> Terragraph:
+    """
+    creates a Terragraph object form the example graph_string
+    :param graph_string:
+    :return: Terraggraph object
+    """
+    return Terragraph(dot_data=graph_string)
 
 
 @pytest.fixture()

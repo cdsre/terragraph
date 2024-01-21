@@ -130,16 +130,30 @@ class Terragraph:
     def get_edges(self) -> list[pydot.Edge]:
         """
         Gets a list of all edges in the terraform sub graph
-        :return: A list of edges
+        :return: A list of pydot.Edge
         """
         return self.tf_graph.get_edges()
 
     def get_nodes(self) -> list[pydot.Node]:
         """
         Gets a list of all nodes in the terraform sub graph
-        :return:
+        :return: a list of pydot.Node objects
         """
         return self.tf_graph.get_nodes()
+
+    def get_highlighted_nodes(self) -> list[pydot.Node]:
+        """
+        Gets a list of nodes which have a color attribute
+        :return: A list of pydot.Node objects which have a color attribute
+        """
+        return [node for node in self.get_nodes() if "color" in node.get_attributes()]
+
+    def get_highlighted_edges(self) -> list[pydot.Edge]:
+        """
+        Gets a list of nodes which have a color attribute
+        :return: A list of pydot.Node objects which have a color attribute
+        """
+        return [edge for edge in self.get_edges() if "color" in edge.get_attributes()]
 
 
 def create_highlighted_svg(
