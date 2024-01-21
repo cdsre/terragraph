@@ -35,7 +35,7 @@ def test_highlighted_node(terragraph_example):
     :param terragraph_example:
     :return:
     """
-    terragraph_example.highlight_node('"[root] module.mod1.random_pet.this2 (expand)"')
+    terragraph_example.highlight_node(NODE1_NAME)
     assert len(terragraph_example.get_highlighted_nodes()) == 1
 
 
