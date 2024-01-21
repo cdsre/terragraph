@@ -67,7 +67,11 @@ class Terragraph:
         :param node_name: The name of the node to highlight from
         :param color: The color to highlight the node
         :return: None
+        :raises ValueError: If the node_name is not a node in the graph
         """
+        if node_name not in self.get_node_names():
+            raise ValueError(f"Node '{node_name}' is not a valid node in the graph")
+
         node = self.tf_graph.get_node(node_name)[0]
         node.set_color(color)
         self.highlight_node_edges(node_name)
@@ -104,7 +108,11 @@ class Terragraph:
         Takes a node name and will highlight the node and its edges based on the self.highlight_mode value
         :param node_name: The name of the node to highlight and the edges from it.
         :return: None
+        :raises ValueError: Raises a ValueError when the node name passed is not a node in the graph.
         """
+        if node_name not in self.get_node_names():
+            raise ValueError(f"Node '{node_name}' is not a valid node in the graph")
+
         edges: list[pydot.Edge] = []
         if self.highlight_mode in [HighlightingMode.PRECEDING, HighlightingMode.ALL]:
             edges += self.__get_all_preceding_edges(node_name)

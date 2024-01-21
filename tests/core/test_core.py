@@ -1,6 +1,8 @@
 """
 A collection of tests for the core module
 """
+import re
+
 import pytest
 
 from terragraph.core import HighlightingMode, Terragraph
@@ -9,6 +11,7 @@ GRAPH_STRING_EDGES = 25
 GRAPH_STRING_NODES = 7
 NODE1_NAME = '"[root] module.mod1.random_pet.this2 (expand)"'
 NODE2_NAME = '"[root] module.mod2.random_pet.this (expand)"'
+INVALID_NODE_NAME = '[root] module.invalid.random_pet.this (expand)"'
 
 
 def test_get_edges(terragraph_example):
@@ -29,7 +32,7 @@ def test_get_nodes(terragraph_example):
     assert len(terragraph_example.get_nodes()) == GRAPH_STRING_NODES
 
 
-def test_highlighted_node(terragraph_example):
+def test_highlight_node(terragraph_example):
     """
     Passes a node to be highlighted and checks its highlighted nodes
     :param terragraph_example:
@@ -37,6 +40,19 @@ def test_highlighted_node(terragraph_example):
     """
     terragraph_example.highlight_node(NODE1_NAME)
     assert len(terragraph_example.get_highlighted_nodes()) == 1
+
+
+def test_highlight_node_invalid_node_name(terragraph_example):
+    """
+    Tests that when an invalid node name is passed the method raises a value error
+    :param terragraph_example:
+    :return:
+    """
+    with pytest.raises(
+        ValueError,
+        match=f"Node '{re.escape(INVALID_NODE_NAME)}' is not a valid node in the graph",
+    ):
+        terragraph_example.highlight_node(INVALID_NODE_NAME)
 
 
 @pytest.mark.parametrize(
@@ -82,3 +98,17 @@ def test_highlight_node_edges(
     )
     terragraph_example.highlight_node_edges(node_name)
     assert len(terragraph_example.get_highlighted_edges()) == expected_num_edges
+
+
+def test_highlight_node_edges_invalid_node_name(graph_string):
+    """
+    Test that when using an invalid node name to highlight edges we get a ValueError
+    :param graph_string:
+    :return:
+    """
+    terragraph_example = Terragraph(dot_data=graph_string)
+    with pytest.raises(
+        ValueError,
+        match=f"Node '{re.escape(INVALID_NODE_NAME)}' is not a valid node in the graph",
+    ):
+        terragraph_example.highlight_node_edges(INVALID_NODE_NAME)
