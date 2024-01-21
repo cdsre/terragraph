@@ -67,7 +67,11 @@ class Terragraph:
         :param node_name: The name of the node to highlight from
         :param color: The color to highlight the node
         :return: None
+        :raises ValueError: If the node_name is not a node in the graph
         """
+        if node_name not in self.get_node_names():
+            raise ValueError(f"Node '{node_name}' is not a valid node in the graph")
+
         node = self.tf_graph.get_node(node_name)[0]
         node.set_color(color)
         self.highlight_node_edges(node_name)
@@ -104,7 +108,11 @@ class Terragraph:
         Takes a node name and will highlight the node and its edges based on the self.highlight_mode value
         :param node_name: The name of the node to highlight and the edges from it.
         :return: None
+        :raises ValueError: Raises a ValueError when the node name passed is not a node in the graph.
         """
+        if node_name not in self.get_node_names():
+            raise ValueError(f"Node '{node_name}' is not a valid node in the graph")
+
         edges: list[pydot.Edge] = []
         if self.highlight_mode in [HighlightingMode.PRECEDING, HighlightingMode.ALL]:
             edges += self.__get_all_preceding_edges(node_name)
@@ -126,6 +134,34 @@ class Terragraph:
         :return: None
         """
         self.__graph.write(file_name, format="svg")
+
+    def get_edges(self) -> list[pydot.Edge]:
+        """
+        Gets a list of all edges in the terraform sub graph
+        :return: A list of pydot.Edge
+        """
+        return self.tf_graph.get_edges()
+
+    def get_nodes(self) -> list[pydot.Node]:
+        """
+        Gets a list of all nodes in the terraform sub graph
+        :return: a list of pydot.Node objects
+        """
+        return self.tf_graph.get_nodes()
+
+    def get_highlighted_nodes(self) -> list[pydot.Node]:
+        """
+        Gets a list of nodes which have a color attribute
+        :return: A list of pydot.Node objects which have a color attribute
+        """
+        return [node for node in self.get_nodes() if "color" in node.get_attributes()]
+
+    def get_highlighted_edges(self) -> list[pydot.Edge]:
+        """
+        Gets a list of nodes which have a color attribute
+        :return: A list of pydot.Node objects which have a color attribute
+        """
+        return [edge for edge in self.get_edges() if "color" in edge.get_attributes()]
 
 
 def create_highlighted_svg(
