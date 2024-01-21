@@ -127,6 +127,20 @@ class Terragraph:
         """
         self.__graph.write(file_name, format="svg")
 
+    def get_edges(self) -> list[pydot.Edge]:
+        """
+        Gets a list of all edges in the terraform sub graph
+        :return: A list of edges
+        """
+        return self.tf_graph.get_edges()
+
+    def get_nodes(self) -> list[pydot.Node]:
+        """
+        Gets a list of all nodes in the terraform sub graph
+        :return:
+        """
+        return self.tf_graph.get_nodes()
+
 
 def create_highlighted_svg(
     dot_file_name: str,
