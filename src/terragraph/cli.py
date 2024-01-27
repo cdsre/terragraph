@@ -22,11 +22,16 @@ def terragraph_cli() -> click.BaseCommand:
     default=HighlightingMode.PRECEDING.value,
     help="Select highlighting mode",
 )
-def highlight(file_name: str, node_name: str, mode: HighlightingMode) -> int:
+@click.option("--filtered", is_flag=True)
+def highlight(
+    file_name: str, node_name: str, mode: HighlightingMode, filtered: bool
+) -> int:
     """
     Highlights a node and its edges
     """
-    create_highlighted_svg(file_name, node_name, mode=HighlightingMode(mode))
+    create_highlighted_svg(
+        file_name, node_name, mode=HighlightingMode(mode), filtered=filtered
+    )
     return 0
 
 

@@ -8,6 +8,7 @@ Welcome to terragraph's documentation!
    readme
    installation
    usage
+   cli
    contributing
    authors
    history

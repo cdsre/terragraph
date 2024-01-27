@@ -112,3 +112,12 @@ def test_highlight_node_edges_invalid_node_name(graph_string):
         match=f"Node '{re.escape(INVALID_NODE_NAME)}' is not a valid node in the graph",
     ):
         terragraph_example.highlight_node_edges(INVALID_NODE_NAME)
+
+
+def test_remove_unhighlighted_edges(terragraph_example):
+    node_name = NODE2_NAME
+    terragraph_example.highlight_node_edges(node_name)
+    terragraph_example.remove_unhighlighted_elements()
+
+    assert len(terragraph_example.get_nodes()) == 4
+    assert len(terragraph_example.get_edges()) == 8
