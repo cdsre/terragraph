@@ -163,15 +163,41 @@ class Terragraph:
         """
         return [edge for edge in self.get_edges() if "color" in edge.get_attributes()]
 
+    def remove_unhighlighted_elements(self) -> None:
+        """
+        Will remove any edges that are not highlighted or any nodes which are not part of a highlighted edge.
+        :return:
+        """
+        highlighted_edges = self.get_highlighted_edges()
+        all_edges = self.get_edges()
+        edges_to_remove = [node for node in all_edges if node not in highlighted_edges]
+        for edge in edges_to_remove:
+            self.tf_graph.del_edge(edge.get_source(), edge.get_destination())
+
+        source_nodes_in_highlight_path = [
+            edge.get_source() for edge in highlighted_edges
+        ]
+        dest_nodes_in_highlight_path = [
+            edge.get_destination() for edge in highlighted_edges
+        ]
+        nodes_in_highlight_path = (
+            source_nodes_in_highlight_path + dest_nodes_in_highlight_path
+        )
+        for node in self.get_nodes():
+            if node.get_name() not in nodes_in_highlight_path:
+                self.tf_graph.del_node(node.get_name())
+
 
 def create_highlighted_svg(
     dot_file_name: str,
     highlighted_node_name: str,
     mode: HighlightingMode = Terragraph.DEFAULT_HIGHLIGHTING_MODE,
+    filtered: bool = False,
 ) -> None:
     """
     Will create a highlighted representation of the graph under the same path as the dot_file_name but suffixed with .svg
 
+    :param filtered: A boolean that indicates if only the highlighted nodes should be shown
     :param dot_file_name: The name/path to a file containing a terraform graph output
     :param highlighted_node_name: The node name to highlight in the graph and its edges.
     :param mode: An Enum indicating which highlighting mode to use
@@ -179,6 +205,8 @@ def create_highlighted_svg(
     """
     terragraph = from_file(dot_file_name, mode)
     terragraph.highlight_node(highlighted_node_name)
+    if filtered:
+        terragraph.remove_unhighlighted_elements()
 
     # Output the SVG file
     output_file_path = f"{dot_file_name}.svg"
