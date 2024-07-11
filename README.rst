@@ -41,6 +41,10 @@ solve that by taking the output from a `terraform graph` command and selecting a
 it provides a HighlightingMode to allow the user to decide if they want to see all the resources the node depends on, all
 the resources that depend on this node, or both.
 
+NOTE: In terraform 1.7+ PR https://github.com/hashicorp/terraform/pull/34288, the graph output has been changed to be
+compact graph. In order to produce a format that works with this tool and the old structure you need to run
+`terraform graph --type=plan`
+
 Usage
 -----
 
