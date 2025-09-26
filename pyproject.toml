@@ -32,7 +32,7 @@ terragraph = "terragraph.cli:terragraph_cli"
 
 [project.optional-dependencies]
 dev = [
-    "pytest>=3",
+    "pytest>=3.10.1",
     "pylint",
     "black",
     "mypy",
