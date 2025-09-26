@@ -1,0 +1,6 @@
+{
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "extends": [
+        "github>cdsre/renovate-runner//pre-sets/cdsre.json"
+    ]
+}
